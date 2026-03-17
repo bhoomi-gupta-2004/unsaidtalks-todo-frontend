@@ -8,7 +8,7 @@ import {
   EyeIcon,
   EyeSlashIcon,
 } from "@heroicons/react/24/outline";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const Signup = () => {
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/auth/signup", {
+      const res = await axios.post(`${API_URL}/auth/signup`, {
         name,
         email,
         password

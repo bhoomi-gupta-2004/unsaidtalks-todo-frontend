@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { isTokenValid } from "../utils/auth";
+const API_URL = import.meta.env.VITE_API_URL;
 const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +26,7 @@ useEffect(() => {
  const handleLogin = async () => {
   try {
 
-    const res = await axios.post("http://localhost:5000/auth/login", {
+    const res = await axios.post(`${API_URL}/auth/login`, {
       email,
       password,
       rememberMe

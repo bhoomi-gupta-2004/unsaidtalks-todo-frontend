@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import TaskItem from "../components/TaskItem";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const Dashboard = () => {
 
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Dashboard = () => {
 
     try {
 
-      const res = await axios.get("http://localhost:5000/tasks", {
+      const res = await axios.get(`${API_URL}/tasks`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -82,7 +82,7 @@ const Dashboard = () => {
     try {
 
       await axios.post(
-        "http://localhost:5000/tasks",
+        `${API_URL}/tasks`,
         {
           title: title.trim(),
           dueDate
@@ -130,7 +130,7 @@ const Dashboard = () => {
     try {
 
       await axios.delete(
-        `http://localhost:5000/tasks/${taskId}`,
+        `${API_URL}/tasks/${taskId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -170,7 +170,7 @@ const updateTaskStatus = async (taskId) => {
   try {
 
     await axios.patch(
-      `http://localhost:5000/tasks/${taskId}/status`,
+      `${API_URL}/tasks/${taskId}/status`,
       { status: "DONE" },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -190,7 +190,7 @@ const updateTaskStatus = async (taskId) => {
     try {
 
       await axios.post(
-        "http://localhost:5000/auth/logout",
+        `${API_URL}/auth/logout`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
